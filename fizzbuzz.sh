@@ -1,7 +1,7 @@
 #!/bin/bash
 
 start=${1:-1}
-end=${2:-101}
+end=${2:-100}
 
 fizz=${3:-3}
 buzz=${4:-5}
@@ -18,8 +18,9 @@ OUT_README=1
 if [[ -n ${OUT_README} ]]; then
     exec > ${output}
 
+    echo "# readme.md"
+    echo "fizzbuzz from ${start} to ${end}, inclusive"
     # begin code block
-    echo '# readme'
     echo '```'
 fi
 
@@ -48,7 +49,7 @@ write_out() {
     fi
 }
 
-for ((i = "${start}" ; i < "${end}" ; i++)); do
+for ((i = "${start}" ; i <= "${end}" ; i++)); do
 
     if ! (( i % ${fizzbuzz} )); then
         write_out "${i}" "fizzbuzz"

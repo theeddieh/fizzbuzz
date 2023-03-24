@@ -1,7 +1,8 @@
-# readme
+# readme.md
+fizzbuzz from 1 to 100, inclusive
 ```
 starting: 1
-ending:   101
+ending:   100
 fizz:     3
 buzz:     5
 fizzbuzz: 15
