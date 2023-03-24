@@ -2,7 +2,6 @@
 
 start=${1:-1}
 end=${2:-101}
-end=${2:-101}
 
 fizz=${3:-3}
 buzz=${4:-5}
@@ -10,35 +9,43 @@ fizzbuzz=$(( ${fizz} * ${buzz} ))
 
 output="README.md"
 
-echo '```' > "${output}"
+# basic output controls
+OUT_DATA=1
+OUT_ARRAY=
+OUT_LIST=1
+OUT_README=1
 
-echo "starting from: ${start}" >> "${output}"
-echo "ending with:   ${end}" >> "${output}"
+if [[ -n ${OUT_README} ]]; then
+    exec > ${output}
 
-echo "fizz:     ${fizz}" >> "${output}"
-echo "buzz:     ${buzz}" >> "${output}"
-echo "fizzbuzz: ${fizzbuzz}" >> "${output}"
+    # begin code block
+    echo '# readme'
+    echo '```'
+fi
 
-echo "output: ${output}" >> "${output}"
-
-echo
+if [[ -n ${OUT_DATA} ]]; then
+    printf "starting: %s\n"    "${start}"
+    printf "ending:   %s\n"      "${end}"
+    printf "fizz:     %s\n"     "${fizz}"
+    printf "buzz:     %s\n"     "${buzz}"
+    printf "fizzbuzz: %s\n" "${fizzbuzz}"
+    printf "output:   %s\n"   "${output}"
+fi
 
 # $1: number
 # $2: string
 write_out() {
+    if [[ -n ${OUT_ARRAY} ]]; then
+        if [[ -n ${2} ]]; then
+            printf "%s " "${2}"
+        else
+            printf "%d " "${1}"
+        fi
+    fi
 
-    # if [[ -n ${2} ]]; then
-    #     printf "%s " "${2}"
-    # else
-    #     printf "%d " "${1}"
-    # fi
-    # if [[ -n ${2} ]]; then
-    #     printf "%s " "${2}"
-    # else
-    #     printf "%d " "${1}"
-    # fi
-
-    echo "${1}: ${2}" >> "${output}"
+    if [[ -n ${OUT_LIST} ]]; then
+        echo "${1}: ${2}"
+    fi
 }
 
 for ((i = "${start}" ; i < "${end}" ; i++)); do
@@ -50,10 +57,15 @@ for ((i = "${start}" ; i < "${end}" ; i++)); do
     elif ! (( i % ${buzz} )); then
         write_out "${i}" "buzz"
     else
-        # comment out to skip non-matches
+        # comment out to skip non-matches, but you do need to for the array
         write_out "${i}" ""
     fi 
 
 done
 
-echo '```' >> "${output}"
+echo
+
+if [[ -n ${OUT_README} ]]; then
+    # end code block
+    echo '```'
+fi

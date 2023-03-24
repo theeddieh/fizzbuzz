@@ -1,10 +1,11 @@
+# readme
 ```
-starting from: 1
-ending with:   101
+starting: 1
+ending:   101
 fizz:     3
 buzz:     5
 fizzbuzz: 15
-output: README.md
+output:   README.md
 1: 
 2: 
 3: fizz
@@ -105,4 +106,5 @@ output: README.md
 98: 
 99: fizz
 100: buzz
+
 ```
