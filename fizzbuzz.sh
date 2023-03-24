@@ -1,31 +1,38 @@
 #!/bin/bash
 
 start=${1:-1}
-end=${2:-100}
+end=${2:-101}
 
 fizz=${3:-3}
 buzz=${4:-5}
 fizzbuzz=$(( ${fizz} * ${buzz} ))
 
+output="README.md"
 
-echo "starting from: ${start}"
-echo "ending with:   ${end}"
+echo '```' > "${output}"
 
-echo "fizz:     ${fizz}"
-echo "buzz:     ${buzz}"
-echo "fizzbuzz: ${fizzbuzz}"
+echo "starting from: ${start}" >> "${output}"
+echo "ending with:   ${end}" >> "${output}"
+
+echo "fizz:     ${fizz}" >> "${output}"
+echo "buzz:     ${buzz}" >> "${output}"
+echo "fizzbuzz: ${fizzbuzz}" >> "${output}"
+
+echo "output: ${output}" >> "${output}"
+
+echo
 
 # $1: number
 # $2: string
 write_out() {
 
-    if [[ -n ${2} ]]; then
-        printf "%s " "${2}"
-    else
-        printf "%d " "${1}"
-    fi
+    # if [[ -n ${2} ]]; then
+    #     printf "%s " "${2}"
+    # else
+    #     printf "%d " "${1}"
+    # fi
 
-    # echo "${1}: ${2}"
+    echo "${1}: ${2}" >> "${output}"
 }
 
 for ((i = "${start}" ; i < "${end}" ; i++)); do
@@ -42,3 +49,5 @@ for ((i = "${start}" ; i < "${end}" ; i++)); do
     fi 
 
 done
+
+echo '```' >> "${output}"
