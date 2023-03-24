@@ -2,6 +2,7 @@
 
 start=${1:-1}
 end=${2:-101}
+end=${2:-101}
 
 fizz=${3:-3}
 buzz=${4:-5}
@@ -26,6 +27,11 @@ echo
 # $2: string
 write_out() {
 
+    # if [[ -n ${2} ]]; then
+    #     printf "%s " "${2}"
+    # else
+    #     printf "%d " "${1}"
+    # fi
     # if [[ -n ${2} ]]; then
     #     printf "%s " "${2}"
     # else
