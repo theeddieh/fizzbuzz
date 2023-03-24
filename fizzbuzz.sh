@@ -15,17 +15,23 @@ echo "fizz:     ${fizz}"
 echo "buzz:     ${buzz}"
 echo "fizzbuzz: ${fizzbuzz}"
 
+# $1: number
+# $2: string
+write_out() {
+    echo "${1}" "${2}"
+}
+
 for ((i = "${start}" ; i < "${end}" ; i++)); do
 
     if ! (( i % ${fizzbuzz} )); then
-        echo "${i}: fizzbuzz"
+        write_out "${i}" "fizzbuzz"
     elif ! (( i % ${fizz} )); then
-        echo "${i}: fizz"
+        write_out "${i}" "fizz"
     elif ! (( i % ${buzz} )); then
-        echo "${i}: buzz"
+        write_out "${i}" "buzz"
     else
         # comment out to skip non-matches
-        echo "${i}: "
+        write_out "${i}" ""
     fi 
 
 done
