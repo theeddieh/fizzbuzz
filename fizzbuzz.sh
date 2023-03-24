@@ -1,6 +1,6 @@
 #!/bin/bash
 
-start=${1:-0}
+start=${1:-1}
 end=${2:-100}
 
 fizz=${3:-3}
@@ -18,7 +18,14 @@ echo "fizzbuzz: ${fizzbuzz}"
 # $1: number
 # $2: string
 write_out() {
-    echo "${1}" "${2}"
+
+    if [[ -n ${2} ]]; then
+        printf "%s " "${2}"
+    else
+        printf "%d " "${1}"
+    fi
+
+    # echo "${1}: ${2}"
 }
 
 for ((i = "${start}" ; i < "${end}" ; i++)); do
@@ -35,4 +42,3 @@ for ((i = "${start}" ; i < "${end}" ; i++)); do
     fi 
 
 done
-
